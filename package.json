@@ -1,0 +1,26 @@
+{
+  "name": "learn-electrom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelGoulartB/learn-electrom.git"
+  },
+  "keywords": [
+    "Electrom",
+    "Timer"
+  ],
+  "author": "Rafael Goulart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafaelGoulartB/learn-electrom/issues"
+  },
+  "homepage": "https://github.com/RafaelGoulartB/learn-electrom#readme",
+  "dependencies": {
+    "electron": "^4.0.5"
+  }
+}
