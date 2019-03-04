@@ -1,7 +1,8 @@
 const {ipcRenderer} = require('electron');
 
-const btnAbout = document.getElementById('link-about');
+const linkSobre = document.querySelector('#link-sobre');
 
-btnAbout.addEventListener('click', () => {
-  ipcRenderer.send('open-about-window');
+
+linkSobre.addEventListener('click', function() {
+  ipcRenderer.send('abrir-janela-sobre');
 });
