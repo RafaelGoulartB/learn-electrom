@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/RafaelGoulartB/learn-electrom#readme",
   "dependencies": {
-    "electron": "^4.0.5"
+    "electron": "^4.0.5",
+    "jsonfile-promised": "0.0.1",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "eslint": "^5.15.0",
