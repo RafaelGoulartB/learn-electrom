@@ -1,5 +1,5 @@
 const jsonfile = require('jsonfile-promised');
-const fs = require('fs')
+const fs = require('fs');
 
 module.exports = {
 
@@ -8,26 +8,33 @@ module.exports = {
     if (fs.existsSync(filePath)) {
       this.addTimeOnCourse(filePath, studiedTime);
     } else {
-      this.createCourseFile(courseName, {})
-        .then(() => this.addTimeOnCourse(filePath, studiedTime))
+      this.createCourseFile(filePath, {})
+          .then(() => this.addTimeOnCourse(filePath, studiedTime));
     }
   },
   addTimeOnCourse(fileCourse, studiedTime) {
     const contentFileCourse = {
       lastStudy: new Date().toString(),
-      time: studiedTime
-    }
+      time: studiedTime,
+    };
     jsonfile.writeFile(fileCourse, contentFileCourse, {spaces: 2})
-      .then(() => console.log('Time Added'))
-      .catch(err => console.log(err))
+        .then(() => console.log('Time Added'))
+        .catch((err) => console.log(err));
   },
   createCourseFile(nameFile, contentFile) {
     return jsonfile.writeFile(nameFile, contentFile)
-      .then(() => console.log('File Created'))
-      .catch(err => console.log);
+        .then(() => console.log('File Created'))
+        .catch((err) => console.log);
   },
   getDataFromCourse(courseName) {
     const filePath = __dirname + '/data/' + courseName + '.json';
-    return jsonfile.readFile(filePath)
-  }
-}
+    return jsonfile.readFile(filePath);
+  },
+  getNameCourses() {
+    const filesNames = fs.readdirSync(__dirname + '/data');
+    const coursesNames = filesNames.map((fileName) =>
+      fileName.substr(0, fileName.lastIndexOf('.'))
+    );
+    return coursesNames;
+  },
+};
