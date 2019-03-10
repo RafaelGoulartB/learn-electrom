@@ -16,6 +16,10 @@ app.on('ready', () => {
   const menuTrayTemplate = template.getTrayMenu(mainWindow);
   const menuCoursesTray = Menu.buildFromTemplate(menuTrayTemplate);
   tray.setContextMenu(menuCoursesTray);
+
+  const menuTemplate = template.getMainMenu(app);
+  const mainMenu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(mainMenu);
 });
 
 app.on('window-all-closed', () => app.quit());
