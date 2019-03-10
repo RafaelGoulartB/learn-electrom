@@ -1,5 +1,5 @@
 const data = require('./data');
-const { ipcMain } = require('electron');
+const {ipcMain} = require('electron');
 
 module.exports = {
   initalTemplate: null,
@@ -31,30 +31,30 @@ module.exports = {
       click: () => {
         window.send('course-changed', newCourseName);
       },
-    })
+    });
     return this.initalTemplate;
   },
   getMainMenu() {
-    let menuTemplate = [
+    const menuTemplate = [
       {
         label: 'View',
         submenu: [{
-          role: 'reload'
+          role: 'reload',
         },
         {
-          role: 'toggledevtools'
-        }]
+          role: 'toggledevtools',
+        }],
       },
       {
         label: 'Window',
         submenu: [
           {
-            role: 'minimize'                       
+            role: 'minimize',
           },
           {
-            role: 'close'
-          }
-        ]
+            role: 'close',
+          },
+        ],
       },
       {
         label: 'Sobre',
@@ -62,29 +62,28 @@ module.exports = {
           {
             label: 'Sobre o Alura Timer',
             click: () => {
-                ipcMain.emit('open-about-window');
+              ipcMain.emit('open-about-window');
             },
-            accelerator: 'CmdOrCtrl+I'
-          }
-        ]
-      }
-  ];
+            accelerator: 'CmdOrCtrl+I',
+          },
+        ],
+      },
+    ];
     // If is MAC
-    if( process.platform == 'darwin'){
+    if ( process.platform == 'darwin') {
       templateMenu.unshift(
-        {
-          label: app.getName(),
-          submenu: [
-            {
-              label: 'Estou rodando no Mac!'
-            }
-          ]
-        }
-    )};
+          {
+            label: app.getName(),
+            submenu: [
+              {
+                label: 'Estou rodando no Mac!',
+              },
+            ],
+          }
+      );
+    };
     return menuTemplate;
-  }
-
-
+  },
 
 
 };

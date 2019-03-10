@@ -27,30 +27,30 @@ playBottun.addEventListener('click', () => {
   if (play) {
     timer.stop(courseName.textContent);
     new Notification('Alura Timer',
-      {
-        body: `Course ${courseName.textContent} was stopped!`,
-        icon: 'img/stop-button.png'
-      }
+        {
+          body: `Course ${courseName.textContent} was stopped!`,
+          icon: 'img/stop-button.png',
+        }
     );
     play = false;
   } else {
     timer.start(timeDOM);
     new Notification('Alura Timer',
-      {
-        body: `Course ${courseName.textContent} was started!`,
-        icon: 'img/play-button.png'
-      }
+        {
+          body: `Course ${courseName.textContent} was started!`,
+          icon: 'img/play-button.png',
+        }
     );
     play = true;
   }
 });
 
 ipcRenderer.on('course-changed', (event, course) => {
-  timer.stop(courseName.textContent)
+  timer.stop(courseName.textContent);
   courseName.textContent = course;
   data.getDataFromCourse(course)
       .then((data) => timeDOM.textContent = data.time)
-      .catch(err => timeDOM.textContent = '00:00:00')
+      .catch((err) => timeDOM.textContent = '00:00:00');
 });
 
 btnAddNewCourse.addEventListener('click', () => {

@@ -49,7 +49,7 @@ ipcMain.on('course-stoped', (event, courseName, studiedTime) => {
 });
 
 ipcMain.on('addedCourse', (event, newCourseName) => {
-  let newMenuTrayTemplate = template.addCourseOnTray(newCourseName, mainWindow);
+  const newMenuTrayTemplate = template.addCourseOnTray(newCourseName, mainWindow);
   const newMenuCoursesTray = Menu.buildFromTemplate(newMenuTrayTemplate);
   tray.setContextMenu(newMenuCoursesTray);
 });
