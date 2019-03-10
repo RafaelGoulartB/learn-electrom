@@ -6,6 +6,8 @@ const linkSobre = document.querySelector('#link-sobre');
 const playBottun = document.querySelector('.botao-play');
 const timeDOM = document.querySelector('.tempo');
 const courseName = document.querySelector('.curso');
+const btnAddNewCourse = document.querySelector('.botao-adicionar');
+const inputAddNewCourse = document.querySelector('.campo-adicionar');
 
 window.onload = () => {
   data.getDataFromCourse(courseName.textContent)
@@ -36,4 +38,12 @@ ipcRenderer.on('course-changed', (event, course) => {
 
   data.getDataFromCourse(course)
       .then((data) => timeDOM.textContent = data.time);
+});
+
+btnAddNewCourse.addEventListener('click', () => {
+  const newCourseName = inputAddNewCourse.value;
+  courseName.textContent = newCourseName;
+  timeDOM.textContent = '00:00:00';
+  inputAddNewCourse.value = null;
+  ipcRenderer.send('addedCourse', newCourseName);
 });

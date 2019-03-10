@@ -2,9 +2,10 @@ const {app, BrowserWindow, ipcMain, Tray, Menu} = require('electron');
 const data = require('./data');
 const template = require('./template');
 
+let mainWindow;
 app.on('ready', () => {
   console.log('Hello World');
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 600,
     height: 400,
   });
@@ -41,4 +42,10 @@ ipcMain.on('close-about-window', () => {
 
 ipcMain.on('course-stoped', (event, courseName, studiedTime) => {
   data.saveDataCourse(courseName, studiedTime);
+});
+
+ipcMain.on('addedCourse', (event, newCourseName) => {
+  let newMenuTrayTemplate = template.addCourseOnTray(newCourseName, mainWindow);
+  const newMenuCoursesTray = Menu.buildFromTemplate(newMenuTrayTemplate);
+  tray.setContextMenu(newMenuCoursesTray);
 });

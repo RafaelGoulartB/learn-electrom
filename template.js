@@ -1,6 +1,8 @@
 const data = require('./data');
 
 module.exports = {
+  initalTemplate: null,
+
   getTrayMenu(window) {
     const template = [
       {label: 'Cursos'},
@@ -17,6 +19,18 @@ module.exports = {
           },
         }
     ));
+    this.initalTemplate = template;
     return template;
+  },
+  addCourseOnTray(newCourseName, window) {
+    this.initalTemplate.push({
+      label: newCourseName,
+      type: 'radio',
+      checked: true,
+      click: () => {
+        window.send('course-changed', newCourseName);
+      },
+    })
+    return this.initalTemplate;
   },
 };
