@@ -1,2 +1,2 @@
-# learn-electrom
-Project in electrom to learn
+# learn-electron
+Project in electron to learn
